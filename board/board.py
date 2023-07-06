@@ -14,6 +14,8 @@ Author: MC
 from turtle import Turtle
 from turtle import Screen
 
+from time import sleep
+
 
 class Board(Turtle):
 
@@ -31,21 +33,27 @@ class Board(Turtle):
         )
         self.screen_width = screen_width
         self.screen_height = screen_height
+        self._y_pos = -self.screen_height/2 + 30
         self._starting_position = [0,
-                                   -self.screen_height/2 + 30]
+                                   self._y_pos]
         self.goto(self._starting_position[0],
                   self._starting_position[1])
         self._move_distance = 20
 
     def move_left(self):
-        pass
+        new_x = self.xcor() - self._move_distance
+        self._move(new_x)
 
     def move_right(self):
-        pass
+        new_x = self.xcor() + self._move_distance
+        self._move(new_x)
 
     def _move(self,
               new_x):
-        pass
+        self.goto(
+            new_x,
+            self._y_pos
+        )
 
     def set_move_distance(self,
                           move_distance):
@@ -116,8 +124,16 @@ if __name__ == '__main__':
 
     x = Board(width,
               height)
-    # x.set_starting_position([0, -250])
-    # x.reset_board()
+
+    screen.listen()
+    screen.onkey(key="Left", fun=x.move_left)
+    screen.onkey(key='a', fun=x.move_left)
+    screen.onkey(key='Right', fun=x.move_right)
+    screen.onkey(key='d', fun=x.move_right)
+
+    while True:
+        screen.update()
+        sleep(0.001)
 
     screen.update()
     screen.exitonclick()

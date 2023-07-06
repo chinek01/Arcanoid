@@ -35,6 +35,7 @@ class Board(Turtle):
                                    -self.screen_height/2 + 30]
         self.goto(self._starting_position[0],
                   self._starting_position[1])
+        self._move_distance = 20
 
     def move_left(self):
         pass
@@ -45,6 +46,21 @@ class Board(Turtle):
     def _move(self,
               new_x):
         pass
+
+    def set_move_distance(self,
+                          move_distance):
+        """
+        Set move distance parameter
+        :param move_distance: distance as type int
+        :return:
+        """
+        if not isinstance(move_distance, int):
+            raise TypeError("Variable distance must by int type.")
+
+        self._move_distance = move_distance
+
+    def get_move_distance(self):
+        return self._move_distance
 
     def set_starting_position(self,
                               position):

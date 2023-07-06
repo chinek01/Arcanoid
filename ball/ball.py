@@ -75,6 +75,24 @@ class Ball(Turtle):
         """
         return self._starting_position
 
+    def set_move_speed(self,
+                       move_speed=0.1):
+        """
+        Set ball move speed parameter
+        :param move_speed: ball speed as float
+        """
+
+        if not isinstance(move_speed, float):
+            raise ValueError("The Move Speed parameter must be a float value!")
+
+        self._move_speed = move_speed
+
+    def get_move_speed(self) -> float:
+        """
+        :return: ball move speed
+        """
+        return self._move_speed
+
 
 # some test
 if __name__ == '__main__':

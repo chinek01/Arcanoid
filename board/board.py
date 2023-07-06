@@ -36,6 +36,16 @@ class Board(Turtle):
         self.goto(self._starting_position[0],
                   self._starting_position[1])
 
+    def move_left(self):
+        pass
+
+    def move_right(self):
+        pass
+
+    def _move(self,
+              new_x):
+        pass
+
     def set_starting_position(self,
                               position):
         """

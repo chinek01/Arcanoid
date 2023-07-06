@@ -22,6 +22,29 @@ class Board(Turtle):
         self.shape('square')
         self.color('white')
         self.penup()
+        self._board_size = 8
+        self.shapesize(
+            stretch_len=self._board_size,
+            stretch_wid=1
+        )
+
+    def set_board_size(self,
+                       size=5):
+        """
+        set board size
+        :param size: default 5 - int type
+        :return:
+        """
+        if not isinstance(size, int):
+            raise TypeError("Size must be int type!")
+
+        self._board_size = size
+
+    def get_board_size(self):
+        """
+        :return: current board size
+        """
+        return self._board_size
 
 
 # some test

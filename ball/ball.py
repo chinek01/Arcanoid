@@ -104,6 +104,11 @@ class Ball(Turtle):
     def x_bounce(self):
         self.x_move *= -1
 
+    def reset_ball(self):
+        self.goto(self.get_starting_position()[0],
+                  self.get_starting_position()[1])
+        self.x_bounce()
+
 
 # some test
 if __name__ == '__main__':
@@ -119,6 +124,9 @@ if __name__ == '__main__':
 
     x = Ball()
 
+    x.set_starting_position([0, 200])
+    x.goto(x.get_starting_position()[0],
+           x.get_starting_position()[1])
+
     screen.update()
     screen.exitonclick()
-

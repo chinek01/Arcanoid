@@ -60,6 +60,21 @@ class Ball(Turtle):
         """
         return self._move_distance
 
+    def set_starting_position(self,
+                              position):
+        """
+        set starting position for the Ball
+        :param position: [x, y]
+        :return:
+        """
+        self._starting_position = position
+
+    def get_starting_position(self):
+        """
+        :return: starting position for the Ball as [x, y] values
+        """
+        return self._starting_position
+
 
 # some test
 if __name__ == '__main__':

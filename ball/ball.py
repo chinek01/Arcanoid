@@ -42,6 +42,24 @@ class Ball(Turtle):
         self.x_move = self._move_distance
         self.y_move = self._move_distance
 
+    def set_move_distance(self,
+                          distance=10):
+        """
+        Set distance value.
+        :param distance: as int
+        """
+
+        if not isinstance(distance, int):
+            raise ValueError("The Distance must be int value!")
+
+        self._move_distance = distance
+
+    def get_move_distance(self):
+        """
+        :return: distance vaule
+        """
+        return self._move_distance
+
 
 # some test
 if __name__ == '__main__':

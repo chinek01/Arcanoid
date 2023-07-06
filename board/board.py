@@ -34,19 +34,33 @@ class Board(Turtle):
         self.screen_width = screen_width
         self.screen_height = screen_height
         self._y_pos = -self.screen_height/2 + 30
+        self._max_left_pos = 0
+        self._max_right_pos = 0
+        self._max_left_right()
         self._starting_position = [0,
                                    self._y_pos]
         self.goto(self._starting_position[0],
                   self._starting_position[1])
         self._move_distance = 20
 
+    def _max_left_right(self):
+        """
+        Calculater max left/right max move possibilities.
+        :return:
+        """
+        space_board = (self._board_size * 20) / 2
+        self._max_left_pos = -self.screen_width/2 + space_board
+        self._max_right_pos = self.screen_width/2 - space_board
+
     def move_left(self):
         new_x = self.xcor() - self._move_distance
-        self._move(new_x)
+        if new_x >= self._max_left_pos:
+            self._move(new_x)
 
     def move_right(self):
         new_x = self.xcor() + self._move_distance
-        self._move(new_x)
+        if new_x <= self._max_right_pos:
+            self._move(new_x)
 
     def _move(self,
               new_x):
@@ -100,6 +114,7 @@ class Board(Turtle):
             raise TypeError("Size must be int type!")
 
         self._board_size = size
+        self._max_left_right()
 
     def get_board_size(self):
         """

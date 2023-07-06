@@ -93,6 +93,17 @@ class Ball(Turtle):
         """
         return self._move_speed
 
+    def move(self):
+        new_x = self.xcor() + self.x_move
+        new_y = self.ycor() + self.y_move
+        self.goto(new_x, new_y)
+
+    def y_bounce(self):
+        self.y_move *= -1
+
+    def x_bounce(self):
+        self.x_move *= -1
+
 
 # some test
 if __name__ == '__main__':

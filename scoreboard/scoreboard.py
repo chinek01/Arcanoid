@@ -39,13 +39,28 @@ class Scoreboard(Turtle):
 
         self._score_file_path = score_file_path
         self._score_data = None
+        self._read_results_from_file()
 
-    def read_results_from_file(self):
+        self._max_score = []
+        self._find_max_score()
+
+    def _read_results_from_file(self):
         """
         Read score file
         """
         with open(self._score_file_path, 'r') as f:
             self._score_data = list(csv.reader(f))
+
+    def _find_max_score(self):
+        """
+        Find The Max result
+        """
+        self._max_score = ['', '0']
+
+        for row in self._score_data:
+            # print(row)
+            if int(self._max_score[1]) < int(row[1]):
+                self._max_score = row
 
 
 # some test
@@ -63,7 +78,6 @@ if __name__ == '__main__':
     screen.tracer(0)
 
     x = Scoreboard(score_file_path='../score_data.csv')
-    x.read_results_from_file()
 
     screen.update()
     screen.exitonclick()

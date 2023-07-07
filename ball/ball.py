@@ -14,6 +14,8 @@ Author: MC
 from turtle import Turtle
 from turtle import Screen
 
+from time import sleep
+
 BALL_COLORS = ["#69345F",
                "#171D69",
                "#B57952",
@@ -32,13 +34,13 @@ class Ball(Turtle):
     def __init__(self,
                  screen_width=800,
                  screen_height=600,
-                 top_margin=100,
-                 bottom_margin=0):
+                 screen_top=100,
+                 screen_bottom=0):
         super().__init__()
         self.shape('square')
         self.color('white')
-        self._shapesize(stretch_wid=0.5,
-                        stretch_len=0.5)
+        self.shapesize(stretch_wid=0.5,
+                       stretch_len=0.5)
         self.penup()
         self._move_speed = 0.1
         self._starting_position = [0, 0]
@@ -49,8 +51,8 @@ class Ball(Turtle):
         # playground dimensions
         self.screen_width = screen_width
         self.screen_height = screen_height
-        self.top_margin = top_margin
-        self.bottom_margin = bottom_margin
+        self.top_margin = screen_top
+        self.bottom_margin = screen_bottom
         self._max_left_pos = 0
         self._max_right_pos = 0
         self._max_bottom_pos = 0
@@ -81,7 +83,7 @@ class Ball(Turtle):
 
     def get_move_distance(self):
         """
-        :return: distance vaule
+        :return: distance value
         """
         return self._move_distance
 
@@ -138,20 +140,33 @@ class Ball(Turtle):
 # some test
 if __name__ == '__main__':
     # screen init
+    width = 800
+    height = 600
+
     screen = Screen()
     screen.title('Ball test')
     screen.setup(
-        width=800,
-        height=600
+        width=width,
+        height=height
     )
     screen.bgcolor('#323232')
     screen.tracer(0)
 
-    x = Ball()
+    x = Ball(screen_width=width,
+             screen_height=width,
+             screen_top=0,
+             screen_bottom=0
+             )
 
     x.set_starting_position([0, 200])
     x.goto(x.get_starting_position()[0],
            x.get_starting_position()[1])
+    x.reset_ball()
 
-    screen.update()
+    while True:
+        screen.update()
+        sleep(0.1)
+        x.move()
+
+    # screen.update()
     screen.exitonclick()

@@ -66,8 +66,8 @@ class Ball(Turtle):
         # ball dimensions 10x10 px
         self._max_left_pos = -self.screen_width/2 + 10
         self._max_right_pos = self.screen_width/2 - 10
-        self._max_bottom_pos = -self.screen_height/2 + self.bottom_margin
-        self._max_top_pos = self.screen_height/2 - self.top_margin
+        self._max_bottom_pos = -self.screen_height/2 + self.bottom_margin + 30
+        self._max_top_pos = self.screen_height/2 - self.top_margin - 30
 
     def set_move_distance(self,
                           distance=10):
@@ -123,6 +123,22 @@ class Ball(Turtle):
     def move(self):
         new_x = self.xcor() + self.x_move
         new_y = self.ycor() + self.y_move
+
+        # print(self._max_left_pos)
+        # print(self._max_top_pos)
+        # print(self._max_right_pos)
+        # print(self._max_bottom_pos)
+
+        if new_x > self._max_right_pos or new_x < self._max_left_pos:
+            # print("trafiony x")
+            self.x_bounce()
+
+        if new_y > self._max_top_pos or new_y < self._max_bottom_pos:
+            # print("trafiony Y")
+            self.y_bounce()
+
+        # print(new_x, ' ', new_y)
+
         self.goto(new_x, new_y)
 
     def y_bounce(self):
@@ -153,19 +169,19 @@ if __name__ == '__main__':
     screen.tracer(0)
 
     x = Ball(screen_width=width,
-             screen_height=width,
-             screen_top=0,
-             screen_bottom=0
+             screen_height=height,
+             screen_top=100,
+             screen_bottom=50
              )
 
-    x.set_starting_position([0, 200])
+    x.set_starting_position([0, 0])
     x.goto(x.get_starting_position()[0],
            x.get_starting_position()[1])
     x.reset_ball()
 
     while True:
         screen.update()
-        sleep(0.1)
+        sleep(0.05)
         x.move()
 
     # screen.update()

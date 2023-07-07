@@ -38,6 +38,7 @@ class Block(Turtle):
         super().__init__()
         self.shape('square')
         self.color(choice(BLOCK_COLORS))
+        self.penup()
         self._block_size = 4
         self.shapesize(
             stretch_len=self._block_size,

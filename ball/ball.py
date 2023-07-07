@@ -29,18 +29,43 @@ BALL_COLORS = ["#69345F",
 
 class Ball(Turtle):
 
-    def __init__(self):
+    def __init__(self,
+                 screen_width=800,
+                 screen_height=600,
+                 top_margin=100,
+                 bottom_margin=0):
         super().__init__()
         self.shape('square')
         self.color('white')
-        self.shapesize(stretch_wid=0.5,
-                       stretch_len=0.5)
+        self._shapesize(stretch_wid=0.5,
+                        stretch_len=0.5)
         self.penup()
         self._move_speed = 0.1
         self._starting_position = [0, 0]
         self._move_distance = 10
         self.x_move = self._move_distance
         self.y_move = self._move_distance
+
+        # playground dimensions
+        self.screen_width = screen_width
+        self.screen_height = screen_height
+        self.top_margin = top_margin
+        self.bottom_margin = bottom_margin
+        self._max_left_pos = 0
+        self._max_right_pos = 0
+        self._max_bottom_pos = 0
+        self._max_top_pos = 0
+        self.max_left_right()
+
+    def max_left_right(self):
+        """
+        Calculate max left and right pos
+        """
+        # ball dimensions 10x10 px
+        self._max_left_pos = -self.screen_width/2 + 10
+        self._max_right_pos = self.screen_width/2 - 10
+        self._max_bottom_pos = -self.screen_height/2 + self.bottom_margin
+        self._max_top_pos = self.screen_height/2 - self.top_margin
 
     def set_move_distance(self,
                           distance=10):

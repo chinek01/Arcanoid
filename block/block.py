@@ -20,7 +20,13 @@ class Block(Turtle):
 
     def __init__(self):
         super().__init__()
-
+        self.shape('square')
+        self.color('white')
+        self._block_size = 4
+        self.shapesize(
+            stretch_len=self._block_size,
+            stretch_wid=1
+        )
 
 # some test
 if __name__ == '__main__':
@@ -36,7 +42,7 @@ if __name__ == '__main__':
     screen.bgcolor("#323232")
     screen.tracer(0)
 
-    x = Block(width, height)
+    x = Block()
 
     screen.update()
     screen.exitonclick()

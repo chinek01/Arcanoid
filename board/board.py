@@ -33,7 +33,7 @@ class Board(Turtle):
         )
         self.screen_width = screen_width
         self.screen_height = screen_height
-        self._y_pos = -self.screen_height/2 + 30
+        self._y_pos = -self.screen_height/2 + 30    # const board y pos
         self._max_left_pos = 0
         self._max_right_pos = 0
         self._max_left_right()

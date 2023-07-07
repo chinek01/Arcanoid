@@ -65,13 +65,31 @@ class Scoreboard(Turtle):
             raise TypeError("The Score must be str value!")
 
         self._curr_result = [name, score]
+        self._score_data.append(self._curr_result)
+
+        self._save_results_to_file()
+        self._find_max_score()
+
+    def _save_results_to_file(self):
+        """
+        Save result list to file
+        """
+        try:
+            with open(self._score_file_path, 'w', newline='') as file:
+                writer = csv.writer(file)
+                writer.writerows(self._score_data)
+        except Exception as e:
+            print(f"Something bad happened {e.__str__()}")
 
     def _read_results_from_file(self):
         """
         Read score file
         """
-        with open(self._score_file_path, 'r') as f:
-            self._score_data = list(csv.reader(f))
+        try:
+            with open(self._score_file_path, 'r') as f:
+                self._score_data = list(csv.reader(f))
+        except Exception as e:
+            print(f"Something bad happened {e.__str__()}")
 
     def _find_max_score(self):
         """
@@ -103,6 +121,8 @@ if __name__ == '__main__':
     screen.tracer(0)
 
     x = Scoreboard(score_file_path='../score_data.csv')
+    # x.add_curr_result('ABX', '123')
+    # x.add_curr_result('DEF', '321')
 
     screen.update()
     screen.exitonclick()

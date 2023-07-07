@@ -43,6 +43,28 @@ class Scoreboard(Turtle):
 
         self._max_score = []
         self._find_max_score()
+        self._curr_result = []
+
+    def add_curr_result(self,
+                        name,
+                        score):
+        """
+        Add new result to win table
+        :param name: games name as ABC
+        :param score: points as str
+        """
+
+        if name is None:
+            raise ValueError("The Name must be set!")
+        if not isinstance(name, str):
+            raise TypeError("The Name must be str value!")
+
+        if score is None:
+            raise ValueError("The Score must be set!")
+        if not isinstance(score, str):
+            raise TypeError("The Score must be str value!")
+
+        self._curr_result = [name, score]
 
     def _read_results_from_file(self):
         """

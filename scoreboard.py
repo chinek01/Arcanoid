@@ -15,11 +15,24 @@ Author: MC
 from turtle import Turtle
 from turtle import Screen
 
+FONT = ("Arial", 25, "normal")
+ALIGN = "center"
+
 
 class Scoreboard(Turtle):
 
-    def __init__(self):
+    def __init__(self,
+                 screen_width=800,
+                 screen_height=600):
         super().__init__()
+        self.shape('square')
+        self.color('gray')
+        self.penup()
+        self.hideturtle()
+        self.screen_width = screen_width
+        self.screen_height = screen_height
+
+
 
 
 # some test

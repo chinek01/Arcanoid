@@ -32,7 +32,8 @@ class Scoreboard(Turtle):
         self.screen_width = screen_width
         self.screen_height = screen_height
 
-
+    def read_results_from_file(self):
+        pass
 
 
 # some test

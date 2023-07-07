@@ -14,6 +14,20 @@ Author: MC
 
 from turtle import Turtle
 from turtle import Screen
+from random import choice
+
+
+BLOCK_COLORS = ["#69345F",
+                "#171D69",
+                "#B57952",
+                "#B8B071",
+                "#35AEB8",
+                "#B8709B",
+                "#7E7FB8",
+                "#268EB8",
+                "#519E21",
+                "#6A839E",
+                "white"]
 
 
 class Block(Turtle):
@@ -21,12 +35,13 @@ class Block(Turtle):
     def __init__(self):
         super().__init__()
         self.shape('square')
-        self.color('white')
+        self.color(choice(BLOCK_COLORS))
         self._block_size = 4
         self.shapesize(
             stretch_len=self._block_size,
             stretch_wid=1
         )
+
 
 # some test
 if __name__ == '__main__':

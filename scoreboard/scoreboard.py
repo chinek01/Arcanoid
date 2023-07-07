@@ -59,8 +59,11 @@ class Scoreboard(Turtle):
 
         for row in self._score_data:
             # print(row)
-            if int(self._max_score[1]) < int(row[1]):
-                self._max_score = row
+            try:
+                if int(self._max_score[1]) < int(row[1]):
+                    self._max_score = row
+            except Exception as e:
+                print(f"Some error: {e.__str__()}")
 
 
 # some test

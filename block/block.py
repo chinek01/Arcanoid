@@ -34,10 +34,16 @@ class Block(Turtle):
 
     def __init__(self,
                  pos_x,
-                 pos_y):
+                 pos_y,
+                 block_color=None):
         super().__init__()
         self.shape('square')
-        self.color(choice(BLOCK_COLORS))
+
+        if block_color is None:
+            self.color(choice(BLOCK_COLORS))
+        else:
+            self.color(block_color)
+
         self.penup()
         self._block_size = 4
         self.shapesize(

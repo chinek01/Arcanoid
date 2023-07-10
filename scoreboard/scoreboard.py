@@ -10,8 +10,7 @@ Date: 2023-07-06
 Author: MC
 
 """
-
-
+import turtle
 from turtle import Turtle
 from turtle import Screen
 import csv
@@ -28,9 +27,10 @@ class Scoreboard(Turtle):
                  score_file_path=None):
         super().__init__()
         self.shape('square')
-        self.color('gray')
+        # self.color('gray')
+        self.color('yellow')
         self.penup()
-        self.hideturtle()
+        # self.hideturtle()
         self.screen_width = screen_width
         self.screen_height = screen_height
 
@@ -44,6 +44,64 @@ class Scoreboard(Turtle):
         self._max_score = []
         self._find_max_score()
         self._curr_result = []
+
+        self._frame_color = 'white'
+        self._frame_height = 100
+        self._frame()
+
+    def set_frame_color(self,
+                        color='white'):
+        if not isinstance(color, str):
+            raise TypeError("The Color must be str type!")
+
+        self._frame_color = color
+
+    def get_frame_color(self):
+        return self._frame_color
+
+    def set_frame_height(self,
+                         frame_height=100):
+        if not isinstance(frame_height, int):
+            raise TypeError("The Frame Height must be int type!")
+
+        self._frame_height = frame_height
+
+    def get_frame_height(self):
+        return self._frame_height
+
+    def _frame(self):
+        """
+        Build scoreboard frame
+        :return:
+        """
+        myPen = turtle.Turtle()
+        myPen.penup()
+        myPen.setposition(
+            -self.screen_width/2 + 10,
+            self.screen_height/2 - 10
+        )
+        myPen.color(self._frame_color)
+        myPen.pendown()
+        myPen.pensize(5)
+
+        for side in range(2):
+            myPen.forward(self.screen_width - 30)
+            myPen.right(90)
+            myPen.forward(self._frame_height - 10)
+            myPen.right(90)
+
+        # central frame
+        myPen.penup()
+        myPen.setposition(
+            0,
+            self.screen_height/2 - 10
+        )
+        myPen.pendown()
+        myPen.right(90)
+        myPen.forward(self._frame_height - 10)
+        myPen.penup()
+
+        myPen.hideturtle()
 
     def add_curr_result(self,
                         name,
@@ -120,7 +178,11 @@ if __name__ == '__main__':
     screen.bgcolor('#323232')
     screen.tracer(0)
 
-    x = Scoreboard(score_file_path='../score_data.csv')
+    x = Scoreboard(
+        score_file_path='../score_data.csv',
+        screen_width=width,
+        screen_height=height
+    )
     # x.add_curr_result('ABX', '123')
     # x.add_curr_result('DEF', '321')
 

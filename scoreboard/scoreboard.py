@@ -170,6 +170,8 @@ class Scoreboard(Turtle):
 
         self._save_results_to_file()
         self._find_max_score()
+        # reset score
+        self._curr_score = 0
 
     def _save_results_to_file(self):
         """
@@ -229,6 +231,7 @@ if __name__ == '__main__':
     # x.add_curr_result('ABX', '123')
     # x.add_curr_result('DEF', '321')
 
+    screen.listen()
     screen.onkey(key='a', fun=x.set_curr_score)
     x.set_curr_score()
 

@@ -26,10 +26,7 @@ class Scoreboard(Turtle):
                  screen_height=600,
                  score_file_path=None):
         super().__init__()
-        self.shape('square')
-        # self.color('gray')
-        self.color('yellow')
-        self.penup()
+
         # self.hideturtle()
         self.screen_width = screen_width
         self.screen_height = screen_height
@@ -48,6 +45,52 @@ class Scoreboard(Turtle):
         self._frame_color = 'white'
         self._frame_height = 100
         self._frame()
+
+        self._text_color = 'white'
+        self._curr_score = 0
+
+    def set_curr_score(self):
+        self._curr_score += 1
+        self.refresh()
+
+    def set_text_color(self,
+                       color='white'):
+
+        if not isinstance(color, str):
+            raise TypeError("The Color must be str type.")
+
+        self._text_color = color
+
+    def get_text_color(self):
+        return self._text_color
+
+    def refresh(self):
+        """
+        Refresh scoreboard
+        """
+
+        self.clear()
+
+        # write max score
+        self.hideturtle()
+        self.penup()
+        self.color(self._text_color)
+
+        first_x = -self.screen_width/4
+        first_y = self.screen_height/2 - self._frame_height/2
+
+        self.goto(first_x - 100, first_y)
+        self.write(f"Max name: {self._max_score[0]}",
+                   font=FONT)
+
+        self.goto(first_x - 100, first_y - 30)
+        self.write(f"Max score: {self._max_score[1]}",
+                   font=FONT)
+
+        # current score
+        self.goto(first_x * (-1) - 100, first_y)
+        self.write(f"Current score: {self._curr_score}",
+                   font=FONT)
 
     def set_frame_color(self,
                         color='white'):
@@ -186,5 +229,10 @@ if __name__ == '__main__':
     # x.add_curr_result('ABX', '123')
     # x.add_curr_result('DEF', '321')
 
-    screen.update()
+    screen.onkey(key='a', fun=x.set_curr_score)
+    x.set_curr_score()
+
+    while True:
+        screen.update()
+
     screen.exitonclick()

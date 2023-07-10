@@ -30,11 +30,28 @@ PLAY_SCREEN_HEIGHT = SCREEN_HEIGHT - 100
 screen = Screen()
 screen.title("Arcanoid by MC")
 screen.setup(
-    SCREEN_WIDTH,
-    SCREEN_HEIGHT
+    width=SCREEN_WIDTH,
+    height=SCREEN_HEIGHT
 )
+screen.bgcolor("#323232")
 screen.tracer(0)
 
 # init game core class
 game_core = Game_core()
+
+# init scoreboard
+scoreboard = Scoreboard(
+    screen_width=SCREEN_WIDTH,
+    screen_height=SCREEN_HEIGHT,
+    score_file_path='score_data.csv'
+)
+scoreboard.refresh()
+
+
+
+# game loop
+
+
+# exit
+screen.exitonclick()
 

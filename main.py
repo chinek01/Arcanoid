@@ -55,6 +55,16 @@ board = Board(
     screen_height=SCREEN_HEIGHT
 )
 
+# init ball
+ball = Ball(
+    screen_width=SCREEN_WIDTH,
+    screen_height=SCREEN_HEIGHT,
+    screen_top=100,
+    screen_bottom=0
+)
+ball.goto(0, 0)
+ball.reset_ball()
+
 # game loop
 screen.listen()
 
@@ -66,6 +76,8 @@ screen.onkey(key='Right', fun=board.move_right)
 
 while game_core.get_game_over_flag():
     screen.update()
+
+    ball.move()
     sleep(0.001)
 
 

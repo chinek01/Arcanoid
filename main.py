@@ -17,6 +17,8 @@ from board.board import Board
 from block.block import Block
 from ball.ball import Ball
 
+from time import sleep
+
 
 # Game options
 SCREEN_WIDTH = 800
@@ -47,9 +49,24 @@ scoreboard = Scoreboard(
 )
 scoreboard.refresh()
 
-
+# init board
+board = Board(
+    screen_width=SCREEN_WIDTH,
+    screen_height=SCREEN_HEIGHT
+)
 
 # game loop
+screen.listen()
+
+screen.onkey(key='a', fun=board.move_left)
+screen.onkey(key='Left', fun=board.move_left)
+
+screen.onkey(key='d', fun=board.move_right)
+screen.onkey(key='Right', fun=board.move_right)
+
+while game_core.get_game_over_flag():
+    screen.update()
+    sleep(0.001)
 
 
 # exit

@@ -65,11 +65,17 @@ class sBoard:
         pass
 
     def get_move_distance(self):
-        pass
+        return self._move_distance
 
     def set_move_distance(self,
                           move_distance):
-        pass
+        if move_distance is None:
+            raise ValueError("The Move distance value must be set!")
+
+        if not isinstance(move_distance, int):
+            raise TypeError("The Move distance value must be int type!")
+
+        self._move_distance = move_distance
 
     def _move(self):
         pass

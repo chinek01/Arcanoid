@@ -137,11 +137,23 @@ while game_core.get_game_over_flag():
         # hit block detection
 
         i = 0
+        # new blocks
+        for my_block in blocks:
+            for my_block_blocks in my_block:
+                if ball.distance(my_block_blocks) < 20:
+                    ball.y_bounce()
+                    block_index = i
+                    sBlock_del()
+                    break
+            i += 1
+
+        # old blocks
         # for my_block in blocks:
         #     if ball.distance(my_block) < 20:
         #         block_index = i
         #         block_del()
         #         ball.y_bounce()
+        #         break
         #     i += 1
 
     # ball out of game board
@@ -152,7 +164,7 @@ while game_core.get_game_over_flag():
     if ball.distance(board) < 20:
         ball.y_bounce()
 
-    sleep(0.1)
+    sleep(0.05)
 
 
 # exit

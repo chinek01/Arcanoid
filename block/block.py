@@ -120,6 +120,7 @@ if __name__ == '__main__':
     screen.bgcolor("#323232")
     screen.tracer(0)
 
+    # new blocks
     x1 = sBlock([-300, 0])
     x2 = sBlock([-200, 0])
     x3 = sBlock([-100, 0])
@@ -128,6 +129,7 @@ if __name__ == '__main__':
     x6 = sBlock([200, 0])
     x7 = sBlock([300, 0])
 
+    # old blocks
     # x1 = Block(-300, 0)
     # x2 = Block(-200, 0)
     # x3 = Block(-100, 0)

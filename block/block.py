@@ -56,6 +56,58 @@ class Block(Turtle):
                   self._pos_y)
 
 
+class sBlock:
+
+    def __init__(self,
+                 start_position):
+        self._body = []
+        self._body_size = 4
+
+        if start_position is None:
+            raise ValueError("Start position value must be set!")
+
+        self.start_position = start_position
+        self.block()
+
+    def block(self,
+              block_color=None):
+
+        my_color = None
+
+        if block_color is None:
+            my_color = choice(BLOCK_COLORS)
+        else:
+            my_color = block_color
+
+        # create body from left to right
+        for n in range(self._body_size):
+            self.add_segment(
+                color=my_color,
+                position=[
+                    self.start_position[0] - 20 * n,
+                    self.start_position[1]]
+            )
+
+    def add_segment(self,
+                    color,
+                    position):
+        bb = Turtle('square')
+        bb.penup()
+        bb.color(color)
+        bb.goto(position)
+        self._body.append(bb)
+
+    def set_body_size(self,
+                      body_size=4):
+        if not isinstance(body_size, int):
+            raise TypeError("The Body size value must be int type.")
+
+        self._body_size = body_size
+
+    def get_body_size(self) -> int:
+        return self._body_size
+
+
 # some test
 if __name__ == '__main__':
     # screen init
@@ -70,13 +122,21 @@ if __name__ == '__main__':
     screen.bgcolor("#323232")
     screen.tracer(0)
 
-    x1 = Block(-300, 0)
-    x2 = Block(-200, 0)
-    x3 = Block(-100, 0)
-    x4 = Block(0, 0)
-    x5 = Block(100, 0)
-    x6 = Block(200, 0)
-    x7 = Block(300, 0)
+    x1 = sBlock([-300, 0])
+    x2 = sBlock([-200, 0])
+    x3 = sBlock([-100, 0])
+    x4 = sBlock([0, 0])
+    x5 = sBlock([100, 0])
+    x6 = sBlock([200, 0])
+    x7 = sBlock([300, 0])
+
+    # x1 = Block(-300, 0)
+    # x2 = Block(-200, 0)
+    # x3 = Block(-100, 0)
+    # x4 = Block(0, 0)
+    # x5 = Block(100, 0)
+    # x6 = Block(200, 0)
+    # x7 = Block(300, 0)
 
     screen.update()
     screen.exitonclick()

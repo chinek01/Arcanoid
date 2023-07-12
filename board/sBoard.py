@@ -36,13 +36,29 @@ class sBoard:
         self._max_left_right()
         self._move_distance = move_distance
 
+        self._body = []
+
+    def get_body(self):
+        return self._body
+
     def board(self):
-        pass
+        # create board body from left to right
+        for n in range(self._board_size):
+            self._add_segment(
+                color=self._color,
+                position=
+                [0 - 20 * n,
+                self._y_pos]
+            )
 
     def _add_segment(self,
                      color,
                      position):
-        pass
+        bb = Turtle('square')
+        bb.penup()
+        bb.color(color)
+        bb.goto(position)
+        self._body.append(bb)
 
     def get_board_size(self):
         return self._board_size

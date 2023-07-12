@@ -60,7 +60,7 @@ class sBlock:
 
     def __init__(self,
                  start_position,
-                 color):
+                 color=None):
         self._body = []
         self._body_size = 4
 
@@ -104,6 +104,9 @@ class sBlock:
 
     def get_body_size(self) -> int:
         return self._body_size
+
+    def get_body(self):
+        return self._body
 
 
 # some test

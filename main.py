@@ -56,6 +56,14 @@ def block_del():
         del(blocks[block_index])
 
 
+def sBlock_del():
+    if len(blocks) > 0:
+        for b in blocks[block_index].get_body():
+            b.reset()
+            b.hideturtle()
+        del(blocks[block_index])
+
+
 screen = Screen()
 screen.title("Arcanoid by MC")
 screen.setup(
@@ -139,7 +147,7 @@ while game_core.get_game_over_flag():
         i = 0
         # new blocks
         for my_block in blocks:
-            for my_block_blocks in my_block:
+            for my_block_blocks in my_block.get_body():
                 if ball.distance(my_block_blocks) < 20:
                     ball.y_bounce()
                     block_index = i
@@ -166,7 +174,5 @@ while game_core.get_game_over_flag():
 
     sleep(0.05)
 
-
 # exit
 screen.exitonclick()
-

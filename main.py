@@ -46,10 +46,11 @@ block_index = -1
 
 
 def block_del():
-    global block_index
-    del(blocks[block_index])
 
-    print(len(blocks))
+    if len(blocks) > 0:
+        blocks[block_index].reset()
+        blocks[block_index].hideturtle()
+        del(blocks[block_index])
 
 
 screen = Screen()
@@ -115,7 +116,8 @@ while game_core.get_game_over_flag():
 
     ball.move()
 
-    block_index = randint(0, len(blocks))
+    if len(blocks) > 0:
+        block_index = randint(0, len(blocks))
 
     sleep(0.01)
 

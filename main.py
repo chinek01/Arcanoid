@@ -116,16 +116,24 @@ screen.onkey(key='Left', fun=board.move_left)
 screen.onkey(key='d', fun=board.move_right)
 screen.onkey(key='Right', fun=board.move_right)
 
-screen.onkey(key='l', fun=block_del)
+# screen.onkey(key='l', fun=block_del)
 
 while game_core.get_game_over_flag():
+
     screen.update()
 
     ball.move()
 
     if len(blocks) > 0:
-        # todo: hit block detection
-        block_index = randint(0, len(blocks))
+        # hit block detection
+
+        i = 0
+        for my_block in blocks:
+            if ball.distance(my_block) < 20:
+                block_index = i
+                block_del()
+                ball.y_bounce()
+            i += 1
 
     # ball out of game board
     if ball.ycor() < -(SCREEN_HEIGHT / 2) + 30:

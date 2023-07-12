@@ -37,18 +37,18 @@ class sBoard:
         self._move_distance = move_distance
 
         self._body = []
+        self.board()
 
     def get_body(self):
         return self._body
 
     def board(self):
         # create board body from left to right
+        start_x_pos = -self._board_size/2 * 20
         for n in range(self._board_size):
             self._add_segment(
                 color=self._color,
-                position=
-                [0 - 20 * n,
-                self._y_pos]
+                position=[start_x_pos + 20 * n, self._y_pos]
             )
 
     def _add_segment(self,
@@ -125,12 +125,13 @@ if __name__ == '__main__':
     screen.tracer(0)
 
     # body class
+    x = sBoard()
 
-    screen.listen()
-    screen.onkey(key='Left', fun=)
-    screen.onkey(key='a', fun=)
-    screen.onkey(key='Right', fun=)
-    screen.onkey(key='d', fun=)
+    # screen.listen()
+    # screen.onkey(key='Left', fun=)
+    # screen.onkey(key='a', fun=)
+    # screen.onkey(key='Right', fun=)
+    # screen.onkey(key='d', fun=)
 
     while True:
         screen.update()

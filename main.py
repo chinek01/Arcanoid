@@ -139,7 +139,7 @@ while game_core.get_game_over_flag():
     if ball.ycor() < -(SCREEN_HEIGHT / 2) + 30:
         game_core.loose_life()
 
-    # todo:  ball detection collision with board
+    # ball detection collision with board
     if ball.distance(board) < 20:
         ball.y_bounce()
 

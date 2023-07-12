@@ -18,6 +18,7 @@ from block.block import Block
 from ball.ball import Ball
 
 from time import sleep
+from random import randint
 
 
 # Game options
@@ -27,6 +28,28 @@ SCREEN_BG_COLOR = "#323232"
 
 PLAY_SCREEN_WIDTH = 800
 PLAY_SCREEN_HEIGHT = SCREEN_HEIGHT - 100
+
+BLOCK_COLORS = ["#69345F",
+                "#171D69",
+                "#B57952",
+                "#B8B071",
+                "#35AEB8",
+                "#B8709B",
+                "#7E7FB8",
+                "#268EB8",
+                "#519E21",
+                "#6A839E",
+                "white"]
+
+
+block_index = -1
+
+
+def block_del():
+    global block_index
+    del(blocks[block_index])
+
+    print(len(blocks))
 
 
 screen = Screen()
@@ -55,6 +78,17 @@ board = Board(
     screen_height=SCREEN_HEIGHT
 )
 
+# init blocks
+blocks = []
+
+for row in range(8):
+    for col in range(7):
+        blocks.append(Block(
+            pos_x=-300 + 100 * col,
+            pos_y=110 - 30 * row,
+            block_color=BLOCK_COLORS[row]
+        ))
+
 # init ball
 ball = Ball(
     screen_width=SCREEN_WIDTH,
@@ -74,11 +108,16 @@ screen.onkey(key='Left', fun=board.move_left)
 screen.onkey(key='d', fun=board.move_right)
 screen.onkey(key='Right', fun=board.move_right)
 
+screen.onkey(key='l', fun=block_del)
+
 while game_core.get_game_over_flag():
     screen.update()
 
     ball.move()
-    sleep(0.001)
+
+    block_index = randint(0, len(blocks))
+
+    sleep(0.01)
 
 
 # exit

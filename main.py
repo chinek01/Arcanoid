@@ -124,6 +124,9 @@ while game_core.get_game_over_flag():
     if ball.ycor() < -(SCREEN_HEIGHT / 2) + 30:
         game_core.loose_life()
 
+    # todo:  ball detection collision with board
+
+
     sleep(0.01)
 
 

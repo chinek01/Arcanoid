@@ -117,7 +117,12 @@ while game_core.get_game_over_flag():
     ball.move()
 
     if len(blocks) > 0:
+        # todo: hit block detection
         block_index = randint(0, len(blocks))
+
+    # ball out of game board
+    if ball.ycor() < -(SCREEN_HEIGHT / 2) + 30:
+        game_core.loose_life()
 
     sleep(0.01)
 

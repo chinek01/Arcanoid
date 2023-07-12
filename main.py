@@ -26,6 +26,9 @@ SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
 SCREEN_BG_COLOR = "#323232"
 
+ROWS = 4
+COLS = 7
+
 PLAY_SCREEN_WIDTH = 800
 PLAY_SCREEN_HEIGHT = SCREEN_HEIGHT - 100
 
@@ -82,8 +85,8 @@ board = Board(
 # init blocks
 blocks = []
 
-for row in range(8):
-    for col in range(7):
+for row in range(ROWS):
+    for col in range(COLS):
         blocks.append(Block(
             pos_x=-300 + 100 * col,
             pos_y=110 - 30 * row,
@@ -97,7 +100,11 @@ ball = Ball(
     screen_top=100,
     screen_bottom=0
 )
-ball.goto(0, 0)
+# ball.goto(0, -(SCREEN_HEIGHT / 2) + 30)
+ball.goto(0, -200)
+# ball.set_starting_position([0, -200])
+ball.set_starting_position([0,
+                            -(SCREEN_HEIGHT / 2) + 75])
 ball.reset_ball()
 
 # game loop
@@ -125,9 +132,10 @@ while game_core.get_game_over_flag():
         game_core.loose_life()
 
     # todo:  ball detection collision with board
+    if ball.distance(board) < 20:
+        ball.y_bounce()
 
-
-    sleep(0.01)
+    sleep(0.1)
 
 
 # exit

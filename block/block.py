@@ -59,9 +59,15 @@ class Block(Turtle):
 class sBlock:
 
     def __init__(self,
-                 start_position):
+                 start_position,
+                 color):
         self._body = []
         self._body_size = 4
+
+        if color is None:
+            self._block_color = choice(BLOCK_COLORS)
+        else:
+            self._block_color = color
 
         if start_position is None:
             raise ValueError("Start position value must be set!")
@@ -69,20 +75,12 @@ class sBlock:
         self.start_position = start_position
         self.block()
 
-    def block(self,
-              block_color=None):
-
-        my_color = None
-
-        if block_color is None:
-            my_color = choice(BLOCK_COLORS)
-        else:
-            my_color = block_color
+    def block(self):
 
         # create body from left to right
         for n in range(self._body_size):
             self.add_segment(
-                color=my_color,
+                color=self._block_color,
                 position=[
                     self.start_position[0] - 20 * n,
                     self.start_position[1]]

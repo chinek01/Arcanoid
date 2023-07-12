@@ -14,7 +14,7 @@ from turtle import Screen
 from scoreboard.scoreboard import Scoreboard
 from game_core.game_core import Game_core
 from board.board import Board
-from block.block import Block
+from block.block import Block, sBlock
 from ball.ball import Ball
 
 from time import sleep
@@ -87,11 +87,20 @@ blocks = []
 
 for row in range(ROWS):
     for col in range(COLS):
-        blocks.append(Block(
-            pos_x=-300 + 100 * col,
-            pos_y=110 - 30 * row,
-            block_color=BLOCK_COLORS[row]
-        ))
+        # old blocks
+        # blocks.append(Block(
+        #     pos_x=-300 + 100 * col,
+        #     pos_y=110 - 30 * row,
+        #     block_color=BLOCK_COLORS[row]
+        # ))
+        # new blocks
+        blocks.append(
+            sBlock(
+                color=BLOCK_COLORS[row],
+                start_position=[-300 + 100 * col,
+                                110 - 30 * row]
+            )
+        )
 
 # init ball
 ball = Ball(
@@ -128,12 +137,12 @@ while game_core.get_game_over_flag():
         # hit block detection
 
         i = 0
-        for my_block in blocks:
-            if ball.distance(my_block) < 20:
-                block_index = i
-                block_del()
-                ball.y_bounce()
-            i += 1
+        # for my_block in blocks:
+        #     if ball.distance(my_block) < 20:
+        #         block_index = i
+        #         block_del()
+        #         ball.y_bounce()
+        #     i += 1
 
     # ball out of game board
     if ball.ycor() < -(SCREEN_HEIGHT / 2) + 30:

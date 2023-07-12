@@ -87,7 +87,11 @@ class sBoard:
         pass
 
     def _max_left_right(self):
-        pass
+        # opcjonalnie dzielenie przez 2 do sprawdzenia
+        # todo: check correct max distance left right after move func write
+        space_board = (self._board_size * 20) / 2
+        self._max_left_pos = - self._screen_width/2 + space_board
+        self._max_right_pos = self._screen_width/2 - space_board
 
 
 # some test

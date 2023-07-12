@@ -20,8 +20,21 @@ class sBoard:
 
     def __init__(self,
                  screen_width=800,
-                 screen_height=600):
-        pass
+                 screen_height=600,
+                 board_size=8,
+                 color='white',
+                 move_distance=20):
+        self._screen_width = screen_width
+        self._screen_height = screen_height
+        self._board_size = board_size
+        self._color = color
+
+        self._y_pos = -self._screen_height/2 + 30
+        self._max_left_pos = 0
+        self._max_right_pos = 0
+
+        self._max_left_right()
+        self._move_distance = move_distance
 
     def board(self):
         pass
@@ -29,14 +42,17 @@ class sBoard:
     def _add_segment(self,
                      color,
                      position):
-        pass 
+        pass
 
     def get_board_size(self):
-        pass
+        return self._board_size
 
     def set_board_size(self,
-                       size=5):
-        pass
+                       size=8):
+        if not isinstance(size, int):
+            raise TypeError("The size value must be int type!")
+
+        self._board_size = size
 
     def reset_board(self):
         pass

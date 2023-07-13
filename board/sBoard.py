@@ -23,7 +23,7 @@ class sBoard:
                  screen_height=600,
                  board_size=8,
                  color='white',
-                 move_distance=20):
+                 move_distance=80):
         self._screen_width = screen_width
         self._screen_height = screen_height
         self._board_size = board_size
@@ -118,8 +118,11 @@ class sBoard:
         # opcjonalnie dzielenie przez 2 do sprawdzenia
         # todo: check correct max distance left right after move func write
         space_board = (self._board_size * 20) / 2
-        self._max_left_pos = - self._screen_width/2 + space_board
-        self._max_right_pos = self._screen_width/2 - space_board
+        # self._max_left_pos = - self._screen_width/2 + space_board
+        # self._max_right_pos = self._screen_width/2 - space_board
+
+        self._max_left_pos = - self._screen_width / 2
+        self._max_right_pos = self._screen_width / 2
 
         self._x_pos_start = -self._board_size/2 * 20
 
@@ -130,7 +133,7 @@ if __name__ == '__main__':
     width = 800
     height = 600
     screen = Screen()
-    screen.title("Board test")
+    screen.title("sBoard test")
     screen.setup(
         width=width,
         height=height
@@ -140,7 +143,7 @@ if __name__ == '__main__':
 
     # body class
     x = sBoard()
-    x.set_move_distance(40)
+    x.set_move_distance(80)
 
     screen.listen()
     screen.onkey(key='Left', fun=x.move_left)

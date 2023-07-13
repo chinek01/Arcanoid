@@ -160,6 +160,7 @@ while game_core.get_game_over_flag():
                     ball.y_bounce()
                     block_index = i
                     sBlock_del()
+                    scoreboard.set_curr_score()
                     break
             i += 1
 
@@ -177,8 +178,14 @@ while game_core.get_game_over_flag():
         game_core.loose_life()
 
     # ball detection collision with board
-    if ball.distance(board) < 20:
-        ball.y_bounce()
+    # old board collision detection
+    # if ball.distance(board) < 20:
+    #     ball.y_bounce()
+
+    # new board collision detection
+    for board_segment in board.get_body():
+        if ball.distance(board_segment) < 20:
+            ball.y_bounce()
 
     sleep(0.05)
 

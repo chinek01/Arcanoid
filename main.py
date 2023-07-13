@@ -14,6 +14,7 @@ from turtle import Screen
 from scoreboard.scoreboard import Scoreboard
 from game_core.game_core import Game_core
 from board.board import Board
+from board.sBoard import sBoard
 from block.block import Block, sBlock
 from ball.ball import Ball
 
@@ -85,7 +86,14 @@ scoreboard = Scoreboard(
 scoreboard.refresh()
 
 # init board
-board = Board(
+# old board
+# board = Board(
+#     screen_width=SCREEN_WIDTH,
+#     screen_height=SCREEN_HEIGHT
+# )
+
+# new board
+board = sBoard(
     screen_width=SCREEN_WIDTH,
     screen_height=SCREEN_HEIGHT
 )

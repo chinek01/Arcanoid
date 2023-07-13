@@ -71,8 +71,12 @@ class sBoard:
         self._board_size = size
 
     def reset_board(self):
-        # todo: reset board position
-        pass
+        # reset board position
+        for n in range(len(self._body)):
+            self._body[n].goto(
+                self._x_pos_start + 20 * n,
+                self._y_pos
+            )
 
     def get_move_distance(self):
         return self._move_distance
@@ -88,7 +92,6 @@ class sBoard:
         self._move_distance = move_distance
 
     def move_right(self):
-        # todo: board move right
 
         stop_move_flag = False
         for n in range(len(self._body), 0, -1):
@@ -102,7 +105,7 @@ class sBoard:
                 stop_move_flag = True
 
     def move_left(self):
-        # todo: board move left
+
         stop_move_flag = False
         for n in range(len(self._body)):
             new_x_cor = self._body[n].xcor() - self._move_distance
@@ -115,8 +118,6 @@ class sBoard:
                 stop_move_flag = True
 
     def _max_left_right(self):
-        # opcjonalnie dzielenie przez 2 do sprawdzenia
-        # todo: check correct max distance left right after move func write
         space_board = (self._board_size * 20) / 2
         # self._max_left_pos = - self._screen_width/2 + space_board
         # self._max_right_pos = self._screen_width/2 - space_board

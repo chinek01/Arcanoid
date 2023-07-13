@@ -87,17 +87,32 @@ class sBoard:
 
         self._move_distance = move_distance
 
-    def _move(self):
-        # todo: board move
-        pass
-
     def move_right(self):
         # todo: board move right
-        pass
+
+        stop_move_flag = False
+        for n in range(len(self._body), 0, -1):
+            new_x_cor = self._body[n-1].xcor() + self._move_distance
+            if new_x_cor <= self._max_right_pos and stop_move_flag is False:
+                self._body[n-1].goto(
+                    new_x_cor,
+                    self._y_pos
+                )
+            else:
+                stop_move_flag = True
 
     def move_left(self):
         # todo: board move left
-        pass
+        stop_move_flag = False
+        for n in range(len(self._body)):
+            new_x_cor = self._body[n].xcor() - self._move_distance
+            if new_x_cor >= self._max_left_pos and stop_move_flag is False:
+                self._body[n].goto(
+                    new_x_cor,
+                    self._y_pos
+                )
+            else:
+                stop_move_flag = True
 
     def _max_left_right(self):
         # opcjonalnie dzielenie przez 2 do sprawdzenia
@@ -125,6 +140,7 @@ if __name__ == '__main__':
 
     # body class
     x = sBoard()
+    x.set_move_distance(40)
 
     screen.listen()
     screen.onkey(key='Left', fun=x.move_left)

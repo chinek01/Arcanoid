@@ -22,7 +22,7 @@ class Game_core:
         self.cur_life = LIFE
         self.game_over_flag = True
         self.move_ball_flag = False
-        self.name = None
+        self.name = "MC"
 
     def set_win_name(self):
         self.name = turtle.textinput(

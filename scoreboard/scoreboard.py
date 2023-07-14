@@ -49,6 +49,21 @@ class Scoreboard(Turtle):
         self._text_color = 'white'
         self._curr_score = 0
 
+        self._life_info = 0
+
+    def set_life_info(self,
+                      life_info: int):
+        if life_info is None:
+            raise ValueError("The Life info value must be set!")
+
+        if not isinstance(life_info, int):
+            raise TypeError("The Life info value must be int type!")
+
+        self._life_info = life_info
+
+    def get_life_info(self):
+        return self._life_info
+
     def set_curr_score(self):
         self._curr_score += 1
         self.refresh()
@@ -90,6 +105,11 @@ class Scoreboard(Turtle):
         # current score
         self.goto(first_x * (-1) - 100, first_y)
         self.write(f"Current score: {self._curr_score}",
+                   font=FONT)
+
+        # current life
+        self.goto(first_x * (-1) - 100, first_y - 30)
+        self.write(f"Life: {self._life_info}",
                    font=FONT)
 
     def set_frame_color(self,

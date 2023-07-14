@@ -11,6 +11,8 @@ Author: MC
 
 """
 
+import turtle
+
 LIFE = 3
 
 
@@ -20,6 +22,13 @@ class Game_core:
         self.cur_life = LIFE
         self.game_over_flag = True
         self.move_ball_flag = False
+        self.name = None
+
+    def set_win_name(self):
+        self.name = turtle.textinput(
+            "Enter Your name:",
+            "Name:"
+        )
 
     def set_move_ball_flag(self,
                            flag: bool):
@@ -49,3 +58,10 @@ class Game_core:
         self.cur_life = LIFE
         self.game_over_flag = True
         self.move_ball_flag = False
+
+
+# some test
+if __name__ == '__main__':
+    x = Game_core()
+    x.set_win_name()
+    print(f"{x.name}")

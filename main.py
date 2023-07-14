@@ -185,6 +185,8 @@ while game_core.get_game_over_flag():
             game_core.cur_life
         )
         scoreboard.refresh()
+        ball.reset_ball()
+        board.reset_board()
 
     # ball detection collision with board
     # old board collision detection

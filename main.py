@@ -84,6 +84,10 @@ scoreboard = Scoreboard(
     score_file_path='score_data.csv'
 )
 scoreboard.refresh()
+scoreboard.set_life_info(
+    game_core.cur_life
+)
+scoreboard.refresh()
 
 # init board
 # old board
@@ -174,8 +178,13 @@ while game_core.get_game_over_flag():
         #     i += 1
 
     # ball out of game board
-    if ball.ycor() < -(SCREEN_HEIGHT / 2) + 30:
+    if ball.ycor() < -(SCREEN_HEIGHT / 2) + 10:
+        print("loose life")
         game_core.loose_life()
+        scoreboard.set_life_info(
+            game_core.cur_life
+        )
+        scoreboard.refresh()
 
     # ball detection collision with board
     # old board collision detection

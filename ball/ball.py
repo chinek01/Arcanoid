@@ -66,7 +66,7 @@ class Ball(Turtle):
         # ball dimensions 10x10 px
         self._max_left_pos = -self.screen_width/2 + 10
         self._max_right_pos = self.screen_width/2 - 10
-        self._max_bottom_pos = -self.screen_height/2 + self.bottom_margin + 30
+        self._max_bottom_pos = -self.screen_height/2 + self.bottom_margin + 10
         self._max_top_pos = self.screen_height/2 - self.top_margin - 30
 
     def set_move_distance(self,

@@ -65,6 +65,10 @@ def sBlock_del():
         del(blocks[block_index])
 
 
+def start_game():
+    game_core.set_move_ball_flag(True)
+
+
 screen = Screen()
 screen.title("Arcanoid by MC")
 screen.setup(
@@ -145,13 +149,16 @@ screen.onkey(key='Left', fun=board.move_left)
 screen.onkey(key='d', fun=board.move_right)
 screen.onkey(key='Right', fun=board.move_right)
 
+screen.onkey(key='space', fun=start_game)
+
 # screen.onkey(key='l', fun=block_del)
 
 while game_core.get_game_over_flag():
 
     screen.update()
 
-    ball.move()
+    if game_core.move_ball_flag is True:
+        ball.move()
 
     if len(blocks) > 0:
         # hit block detection
@@ -181,6 +188,7 @@ while game_core.get_game_over_flag():
     if ball.ycor() < -(SCREEN_HEIGHT / 2) + 10:
         print("loose life")
         game_core.loose_life()
+        game_core.set_move_ball_flag(False)
         scoreboard.set_life_info(
             game_core.cur_life
         )

@@ -167,8 +167,7 @@ class Scoreboard(Turtle):
         myPen.hideturtle()
 
     def add_curr_result(self,
-                        name,
-                        score):
+                        name):
         """
         Add new result to win table
         :param name: games name as ABC
@@ -180,12 +179,7 @@ class Scoreboard(Turtle):
         if not isinstance(name, str):
             raise TypeError("The Name must be str value!")
 
-        if score is None:
-            raise ValueError("The Score must be set!")
-        if not isinstance(score, str):
-            raise TypeError("The Score must be str value!")
-
-        self._curr_result = [name, score]
+        self._curr_result = [name, self._curr_score]
         self._score_data.append(self._curr_result)
 
         self._save_results_to_file()

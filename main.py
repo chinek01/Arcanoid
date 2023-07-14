@@ -186,7 +186,6 @@ while game_core.get_game_over_flag():
 
     # ball out of game board
     if ball.ycor() < -(SCREEN_HEIGHT / 2) + 10:
-        print("loose life")
         game_core.loose_life()
         game_core.set_move_ball_flag(False)
         scoreboard.set_life_info(
@@ -195,6 +194,13 @@ while game_core.get_game_over_flag():
         scoreboard.refresh()
         ball.reset_ball()
         board.reset_board()
+
+        if game_core.get_game_over_flag() is False:
+            game_core.set_win_name()
+            scoreboard.add_curr_result(
+                name=game_core.name
+            )
+            scoreboard.refresh()
 
     # ball detection collision with board
     # old board collision detection
